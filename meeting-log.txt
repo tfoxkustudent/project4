@@ -6,8 +6,8 @@ Disussed ideas
 tweepy
 pdf->LaTex
 arcade game
---
-proceding with machine learning sentimental analysis
+-
+proceding with machine learning sentimental analysis (using tweepy)
 
 *---Wed October 10---*
 met during class
@@ -15,6 +15,11 @@ Tim, Tanner, Matthew and Eli
 scheduled work
 Documentation done by Friday night
 Backlogs to be done first
+name change
 
 *---Wed October 10---*
-met after 4
+met at 4pm
+LEEP2 Atrium
+Matthew, Tanner, Eli and Tim
+project2 retrospective
+started Backlogs
