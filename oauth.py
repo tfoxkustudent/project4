@@ -13,7 +13,7 @@ auth = OAuthHandler(_consumer_key, _consumer_secret)
 auth.set_access_token(_access_token, _access_token_secret)
 
 api = tweepy.API(auth)
-#api.update_status('tweepy+oauth!')
+api.update_status('tweepy+oauth!')
 fetch_tweet = api.search(q = 'Donald Trump', count = 10)
 for tweet in fetch_tweet:
     print(tweet.text)
