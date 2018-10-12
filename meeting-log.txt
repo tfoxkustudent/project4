@@ -28,5 +28,14 @@ started Backlogs
 Matthew, Tanner, Eli and Tim
 met in class
 Django instead of PHP/HTML
-Docker
+Docker?
 AWS vs Heroku
+
+*---Fri October 12---*
+LEEP2
+Matthew, Tanner, Eli and Tim
+afternoon/evening
+set up AWS
+install dependencies
+UML
+tweepy
