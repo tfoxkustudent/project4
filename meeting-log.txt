@@ -23,3 +23,10 @@ LEEP2 Atrium
 Matthew, Tanner, Eli and Tim
 project2 retrospective
 started Backlogs
+
+*---Fri October 12---*
+Matthew, Tanner, Eli and Tim
+met in class
+Django instead of PHP/HTML
+Docker
+AWS vs Heroku
