@@ -3,6 +3,11 @@ from django.views.generic import TemplateView
 #from sentiment.forms import HomeForm
 from .models import Grab_Twitter
 # Create your views here.
+
+"""
+References the index.html when website starts up
+"""
+
 class HomePageView(TemplateView):
     template_name = 'index.html'
 
@@ -18,8 +23,18 @@ class HomePageView(TemplateView):
         #    args = {'form': form, 'text': text}
          #   return render(request, self.template_name, args )
 
+"""
+References the about webpage for the about link in html
+"""
+
+
 class AboutPageView(TemplateView):
     template_name = "about.html"
+
+
+"""
+beta to try and figure out how to pass values through
+"""
 
 def search(request):
     if request.method == "POST":
