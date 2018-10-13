@@ -23,7 +23,7 @@
 	<br>
 
 	<br>
-	<form action="/search"  class="form-inline" method="post">
+	<form action={% url 'basic' %}  class="form-inline" method="post">
   <div class="form-group">
 	  {% csrf_token %} <!--csrf token is needed to run webpage withouth error -->
     <label for="exampleInputName2">First Election Candidate</label>

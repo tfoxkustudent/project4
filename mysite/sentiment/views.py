@@ -36,14 +36,17 @@ class AboutPageView(TemplateView):
 beta to try and figure out how to pass values through
 """
 
-def search(request):
-    if request.method == "POST":
-        First_Election_Candidate = request.POST["First_Election_Candidate"]
-        Second_Election_Candidate = request.POST["Second_Election_Candidate"]
-        
-        search_twitter = Grab_Twitter(First_Election_Candidate)
-        return redirect("basic.html")
-    else:
-        return redirect("/")
+class BasicPageView(TemplateView):
+    template_name = "basic.html"
+
+    def search(request):
+        if request.method == "POST":
+            First_Election_Candidate = request.POST["First_Election_Candidate"]
+            Second_Election_Candidate = request.POST["Second_Election_Candidate"]
+
+            search_twitter = Grab_Twitter(First_Election_Candidate)
+            return redirect('basic')
+        else:
+            return redirect("basic")
 
 
