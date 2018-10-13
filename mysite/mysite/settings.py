@@ -25,6 +25,7 @@ SECRET_KEY = '@1i_7exq@v2st4*nf=f$!hxlhblq$l$iz#0(^8bau(g)1+553c'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+#Our Public IP address to view the website
 ALLOWED_HOSTS = ['54.149.159.80']
 
 
