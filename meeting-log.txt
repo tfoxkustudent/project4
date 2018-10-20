@@ -39,3 +39,24 @@ set up AWS
 install dependencies
 UML
 tweepy
+
+*---Wed October 17---*
+Tim, Tanner, Eli, Matthew
+In class
+Tim will be absent friday
+mentioned django frontend
+
+*---Fri October 19---*
+Tim, Tanner, Matthew
+In class
+discussed details needed in documentation and UML
+
+*---Sat October 20---*
+Tim, Tanner Matthew
+zoom meeting
+explained django
+refined UML class diagram
+planned meeting for sunday
+
+*---Sun October 21---*
+4pm
