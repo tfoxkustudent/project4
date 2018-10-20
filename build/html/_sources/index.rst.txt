@@ -5,11 +5,15 @@
 
 Welcome to project3's documentation!
 ====================================
+This is HTML documentation for our Project 3
+
+Our project depends on urls.py, views.py and oath.py
 
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
 
+   code
 
 
 Indices and tables
