@@ -22,8 +22,8 @@ api = tweepy.API(auth)
 #beta to search for tweets containing 'Donald Trump' and print to console
 
 
-# fetch_tweet = api.search(q = 'Donald Trump', count = 30)
-# for tweet in fetch_tweet:
-#     print(tweet.text)
+fetch_tweet = api.search(q = 'Donald Trump', count = 30)
+for tweet in fetch_tweet:
+    print(tweet.text)
 #
 # print("this works")
