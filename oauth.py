@@ -46,7 +46,7 @@ class TwitterHandle(object):
             return 'neither'
 
 
-    def sort_tweets(self, query, count = 10):
+    def sort_tweets(self, query, count):
         '''
         Grab the tweets and parse
         '''
@@ -77,7 +77,7 @@ def main():
 
     con = TwitterHandle()
 
-    tweets = con.sort_tweets(query = 'Kansas Basketball', count = 200)
+    tweets = con.sort_tweets(query = 'Patrick Mahomes', count = 200)
 
 
     positive_tweets = [tweet for tweet in tweets if tweet['score'] == 'positive']
