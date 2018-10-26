@@ -31,12 +31,12 @@ class TwitterHandle(object):
         Parse tweets so we can send through natural language library
         '''
         first = ' '
-        return first.join(re.sub("(@[A-Za-z0-9]+)|([^0-9A-Za-z \t])|(\w+:\/\/\S+)", " ", tweet).split())
+        return first.join(re.findall("[a-zA-Z]+", tweet))
 
 
     def tweet_scoring_sentiment(self, tweet):
 
-        sentiment_score = tb(self.tweet_parse(tweet))
+        sentiment_score = tb(self.tweet_parse(tweet).strip())
 
         if sentiment_score.sentiment.polarity > 0:
             return 'positive'
@@ -56,15 +56,16 @@ class TwitterHandle(object):
             grab_tweets = self.api.search(q = query, count = count)
 
             for tweet in grab_tweets:
+                if not tweet.retweeted:
 
-                ready_tweets = {}
+                    scoring_tweets = {}
 
-                ready_tweets['text']= tweet.text
-                ready_tweets['sentiment']= self.tweet_scoring_sentiment(tweet.text)
+                    scoring_tweets['tweet']= tweet.text
+                    scoring_tweets['score']= self.tweet_scoring_sentiment(tweet.text)
 
-                if tweet.retweet_count > 0:
-                    if ready_tweets not in tweets:
-                        tweets.append(ready_tweets)
+                    if tweet.retweet_count == 0:
+                        if scoring_tweets not in tweets:
+                            tweets.append(scoring_tweets)
 
             return tweets
 
@@ -79,26 +80,26 @@ def main():
     tweets = con.sort_tweets(query = 'Kansas Basketball', count = 200)
 
 
-    positive_tweets = [tweet for tweet in tweets if tweet['sentiment'] == 'positive']
+    positive_tweets = [tweet for tweet in tweets if tweet['score'] == 'positive']
 
-    print("Positive tweets percentage: {} %".format(100*len(positive_tweets)/len(tweets)))
+    print("Percentage of positive tweets: {} %".format(100*len(positive_tweets)/len(tweets)))
 
-    negative_tweets = [tweet for tweet in tweets if tweet['sentiment'] == 'negative']
+    negative_tweets = [tweet for tweet in tweets if tweet['score'] == 'negative']
 
-    print("Negative tweets percentage: {} %".format(100*len(negative_tweets)/len(tweets)))
+    print("Percentage of negative tweets: {} %".format(100*len(negative_tweets)/len(tweets)))
 
-    dont_care_tweets = [tweet for tweet in tweets if tweet['sentiment'] == 'neither']
+    dont_care_tweets = [tweet for tweet in tweets if tweet['score'] == 'neither']
     print("Percentage who Dont care: {} %".format(100*len(dont_care_tweets)/len(tweets)))
 
 
     print("\n\nPositive tweets:")
     for tweet in positive_tweets[:10]:
-        print(tweet['text'])
+        print(tweet['tweet'])
 
 
     print("\n\nNegative tweets:")
     for tweet in negative_tweets[:10]:
-        print(tweet['text'])
+        print(tweet['tweet'])
 
 if __name__ == "__main__":
 
