@@ -77,19 +77,28 @@ def main():
 
     con = TwitterHandle()
 
-    tweets = con.sort_tweets(query = 'Patrick Mahomes', count = 200)
-
+    tweets = con.sort_tweets(query = 'Elon Musk', count = 200)
 
     positive_tweets = [tweet for tweet in tweets if tweet['score'] == 'positive']
-
-    print("Percentage of positive tweets: {} %".format(100*len(positive_tweets)/len(tweets)))
-
     negative_tweets = [tweet for tweet in tweets if tweet['score'] == 'negative']
-
-    print("Percentage of negative tweets: {} %".format(100*len(negative_tweets)/len(tweets)))
-
     dont_care_tweets = [tweet for tweet in tweets if tweet['score'] == 'neither']
-    print("Percentage who Dont care: {} %".format(100*len(dont_care_tweets)/len(tweets)))
+
+    print("\nnumber of positive tweets {}".format(len(positive_tweets)))
+    print("\nnumber of negative tweets {}".format(len(negative_tweets)))
+    print("\nnumber of don't care tweets {}".format(len(dont_care_tweets)))
+    print("\nnumber of total tweets {}".format(len(tweets)))
+
+
+
+
+    print("\nPercentage of positive tweets: {} %".format(100*len(positive_tweets)/len(tweets)))
+
+
+
+    print("\nPercentage of negative tweets: {} %".format(100*len(negative_tweets)/len(tweets)))
+
+
+    print("\nPercentage who Dont care: {} %".format(100*len(dont_care_tweets)/len(tweets)))
 
 
     print("\n\nPositive tweets:")
