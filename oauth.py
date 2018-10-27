@@ -88,23 +88,13 @@ def main():
     print("\nnumber of don't care tweets {}".format(len(dont_care_tweets)))
     print("\nnumber of total tweets {}".format(len(tweets)))
 
-
-
-
     print("\nPercentage of positive tweets: {} %".format(100*len(positive_tweets)/len(tweets)))
-
-
-
     print("\nPercentage of negative tweets: {} %".format(100*len(negative_tweets)/len(tweets)))
-
-
     print("\nPercentage who Dont care: {} %".format(100*len(dont_care_tweets)/len(tweets)))
-
 
     print("\n\nPositive tweets:")
     for tweet in positive_tweets[:10]:
         print(tweet['tweet'])
-
 
     print("\n\nNegative tweets:")
     for tweet in negative_tweets[:10]:
