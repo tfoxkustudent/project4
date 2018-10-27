@@ -1,7 +1,7 @@
 '''
 Oauth process of connecting to twitter api
 '''
-
+import json
 import tweepy
 from tweepy.auth import OAuthHandler
 from textblob import TextBlob as tb
@@ -31,7 +31,8 @@ class TwitterHandle(object):
         Parse tweets so we can send through natural language library
         '''
         first = ' '
-        return first.join(re.findall("[a-zA-Z]+", tweet))
+        parser = first.join(re.findall("[a-zA-Z]+", tweet))
+        return parser
 
 
     def tweet_scoring_sentiment(self, tweet):
@@ -73,6 +74,11 @@ class TwitterHandle(object):
 
             print("Error : " + str(e))
 
+    def api_call_check(self):
+        rate_limit = self.api.rate_limit_status()
+
+        return rate_limit["resources"]["search"]["/search/tweets"]["remaining"]
+
 def main():
 
     con = TwitterHandle()
@@ -99,6 +105,8 @@ def main():
     print("\n\nNegative tweets:")
     for tweet in negative_tweets[:10]:
         print(tweet['tweet'])
+
+    print("\n\n REMAINING SEARCHES FOR NEXT 15 MINUTES: {}".format(con.api_call_check()))
 
 if __name__ == "__main__":
 
