@@ -6,6 +6,7 @@ import tweepy
 from tweepy.auth import OAuthHandler
 from textblob import TextBlob as tb
 import re
+##from django import HttpRequest
 
 class TwitterHandle(object):
 
@@ -78,36 +79,36 @@ class TwitterHandle(object):
         rate_limit = self.api.rate_limit_status()
 
         return rate_limit["resources"]["search"]["/search/tweets"]["remaining"]
-
-def main():
-
-    con = TwitterHandle()
-
-    tweets = con.sort_tweets(query = 'Elon Musk', count = 200)
-
-    positive_tweets = [tweet for tweet in tweets if tweet['score'] == 'positive']
-    negative_tweets = [tweet for tweet in tweets if tweet['score'] == 'negative']
-    dont_care_tweets = [tweet for tweet in tweets if tweet['score'] == 'neither']
-
-    print("\nnumber of positive tweets {}".format(len(positive_tweets)))
-    print("\nnumber of negative tweets {}".format(len(negative_tweets)))
-    print("\nnumber of don't care tweets {}".format(len(dont_care_tweets)))
-    print("\nnumber of total tweets {}".format(len(tweets)))
-
-    print("\nPercentage of positive tweets: {} %".format(100*len(positive_tweets)/len(tweets)))
-    print("\nPercentage of negative tweets: {} %".format(100*len(negative_tweets)/len(tweets)))
-    print("\nPercentage who Dont care: {} %".format(100*len(dont_care_tweets)/len(tweets)))
-
-    print("\n\nPositive tweets:")
-    for tweet in positive_tweets[:10]:
-        print(tweet['tweet'])
-
-    print("\n\nNegative tweets:")
-    for tweet in negative_tweets[:10]:
-        print(tweet['tweet'])
-
-    print("\n\n REMAINING SEARCHES FOR NEXT 15 MINUTES: {}".format(con.api_call_check()))
-
-if __name__ == "__main__":
-
-    main()
+# 
+# def main():
+#
+#     con = TwitterHandle()
+#
+#     tweets = con.sort_tweets(query = 'Elon Musk', count = 200)
+#
+#     positive_tweets = [tweet for tweet in tweets if tweet['score'] == 'positive']
+#     negative_tweets = [tweet for tweet in tweets if tweet['score'] == 'negative']
+#     dont_care_tweets = [tweet for tweet in tweets if tweet['score'] == 'neither']
+#
+#     print("\nnumber of positive tweets {}".format(len(positive_tweets)))
+#     print("\nnumber of negative tweets {}".format(len(negative_tweets)))
+#     print("\nnumber of don't care tweets {}".format(len(dont_care_tweets)))
+#     print("\nnumber of total tweets {}".format(len(tweets)))
+#
+#     print("\nPercentage of positive tweets: {} %".format(100*len(positive_tweets)/len(tweets)))
+#     print("\nPercentage of negative tweets: {} %".format(100*len(negative_tweets)/len(tweets)))
+#     print("\nPercentage who Dont care: {} %".format(100*len(dont_care_tweets)/len(tweets)))
+#
+#     print("\n\nPositive tweets:")
+#     for tweet in positive_tweets[:10]:
+#         print(tweet['tweet'])
+#
+#     print("\n\nNegative tweets:")
+#     for tweet in negative_tweets[:10]:
+#         print(tweet['tweet'])
+#
+#     print("\n\n REMAINING SEARCHES FOR NEXT 15 MINUTES: {}".format(con.api_call_check()))
+#
+# if __name__ == "__main__":
+#
+#     main()
