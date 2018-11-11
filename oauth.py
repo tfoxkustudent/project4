@@ -31,7 +31,7 @@ class TwitterHandle(object):
         Parse tweets so we can send through natural language library
         '''
         first = ' '
-        parser = first.join(re.findall("[a-zA-Z]+", tweet))
+        parser = first.join(re.findall("[a-zA-Z]+", tweet)) #XXX why don't we use strip() before return?
         return parser
 
 
