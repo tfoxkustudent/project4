@@ -9,7 +9,12 @@ References the index.html when website starts up
 """
 
 def HomePageView(request):
-    return render(request, "index.html")
+    context = {
+        "election" : "document.getElementById('frame').src = '/election'",
+        "stocks" : "document.getElementById('frame').src = '/stocks'",
+        "resize_frame" : "this.style.height = this.contentWindow.document.body.scrollHeight + 'px'"
+    }
+    return render(request, "index.html", context=context)
 
 """
 References the about webpage for the about link in html
@@ -38,15 +43,14 @@ def BasicPageView(request):
     dont_care_tweets = [tweet for tweet in tweets if tweet['score'] == 'neither']
 
     context = {
-        "search_results" :
-            "number of positive tweets {}".format(len(positive_tweets)) +
-            "\nnumber of negative tweets {}".format(len(negative_tweets)) +
-            "\nnumber of don't care tweets {}".format(len(dont_care_tweets)) +
-            "\nnumber of total tweets {}".format(len(tweets)) +
-            "\nPercentage of positive tweets: {} %".format(100*len(positive_tweets)/len(tweets)) +
-            "\nPercentage of negative tweets: {} %".format(100*len(negative_tweets)/len(tweets)) +
-            "\nPercentage who Dont care: {} %".format(100*len(dont_care_tweets)/len(tweets)) +
-            "\n\n REMAINING SEARCHES FOR NEXT 15 MINUTES: {}".format(twitter_data.api_call_check())
+        "positive_tweets" : len(positive_tweets),
+        "negative_tweets" : len(negative_tweets),
+        "dont_care_tweets" : len(dont_care_tweets),
+        "total_tweets" : len(tweets),
+        "positive_percentage" : 100*len(positive_tweets)/len(tweets),
+        "negative_percentage" : 100*len(negative_tweets)/len(tweets),
+        "dont_care_percentage" : 100*len(dont_care_tweets)/len(tweets),
+        "searches_remaining" : twitter_data.api_call_check()
     }
 
     # print("\n\nPositive tweets:")

@@ -1,12 +1,28 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8">
-    <title>Howdy!</title>
-</head>
-<body>
-<p>
-    {{ search_results }}
-</p>
-</body>
+    <head>
+        <meta charset="utf-8">
+        <title>Howdy!</title>
+        <!--Bootstrap reference link-->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"/>
+    </head>
+    <body>
+        <p>
+            Number of Positive Tweets: {{ positive_tweets }}
+            <br>
+            Number of Negative Tweets: {{ negative_tweets }}
+            <br>
+            Number of Don't Care Tweets: {{ dont_care_tweets }}
+            <br>
+            Total Number of Tweets: {{ total_tweets }}
+            <br>
+            Percentage of Positive Tweets: {{ positive_percentage }}
+            <br>
+            Percentage of Negative Tweets: {{ negative_percentage }}
+            <br>
+            Percentage of Don't Care Tweets: {{ dont_care_percentage }}
+            <br><br>
+            Searches Remaining: {{ searches_remaining }}
+        </p>
+    </body>
 </html>

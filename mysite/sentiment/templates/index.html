@@ -2,21 +2,9 @@
 <html>
     <head>
         <meta charset="utf-8">
-
         <title>Howdy!</title>
-
         <!--Bootstrap reference link-->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"/>
-
-        <script type="text/javascript">
-            function OpenFrame(link) {
-                window.document.getElementById("frame").src = link;
-            }
-
-            function ResizeFrame(obj) {
-                obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
-            }
-        </script>
     </head>
 
     <body>
@@ -24,13 +12,12 @@
     	<br>
     	<label for="application">Choose the Application: </label>
     	<select name="application">
-            <option onclick="OpenFrame({% url 'election' %})">Upcoming Election Predictor</option>
-    	    <option onclick="OpenFrame({% url 'stocks' %})">Stock Buy/Sell Suggester</option>
+            <option onclick="{{ election }}">Upcoming Election Predictor</option>
+    	    <option onclick="{{ stocks }}">Stock Buy/Sell Suggester</option>
     	</select>
     	<br>
         <br>
-        <iframe id="frame" frameborder="0" srolling="no" width="100%" onload="ResizeFrame(this)" src="{% url 'election' %}"/>
-    	<br>
+        <iframe id="frame" frameborder="0" srolling="no" width="100%" height="0px" onload="{{ resize_frame }}"></iframe>
     	<a class="btn btn-default" href="{% url 'about' %}" role="button">About the Project</a>
 
     </body>
