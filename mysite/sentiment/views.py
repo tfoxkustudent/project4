@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView
-#from sentiment.forms import HomeForm
 from sentiment.oauth import TwitterHandle
+
 # Create your views here.
 
 """
