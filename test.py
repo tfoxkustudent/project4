@@ -11,11 +11,14 @@ class ParseTestCase(baseTestCase):
 
 	# def tearDown(self):
 
-	def testSpaces(self):
+	def testSpaces(self): #Test - not remioving interior spaces TODO confirm how textblob works
 		text = "a b c"
 		check = self.th.tweet_parse(text)
 		# print(check)
-		assert (check == "abc")
+		assert (check == "a b c")
+		
+	def testRetweets(self):
+
 
 
 
