@@ -49,5 +49,13 @@ class TweepyTestCase(baseTestCase):
 		tweets = self.th.sort_tweets(query = 'Elon Musk', count = 200)
 		b = self.th.api_call_check()
 		assert((a-b) > 0)
+	# def testRetweet(self):
+	# 	a = self.th.api_call_check()
+	# 	tweets = self.th.sort_tweets(query = 'Elon Musk', count = 200)
+	# 	b = self.th.api_call_check()
+	# 	for t in tweets:
+	# 		assert(not t.retweeted)
+
+
 if __name__ == "__main__":
 	unittest.main()
