@@ -17,11 +17,22 @@ class ParseTestCase(baseTestCase):
 		# print(check)
 		assert (check == "a b c")
 		
-	def testRetweets(self):
+	# def testRetweets(self):
 
+	def testPositive(self):
+		text = "good"
+		check = self.th.tweet_scoring_sentiment(text)
+		assert(check == 'positive')
 
-
-
+	def testNegative(self):
+		text = "bad"
+		check = self.th.tweet_scoring_sentiment(text)
+		assert(check == 'negative')
+	
+	def testEmpty(self):
+		text = ""
+		check = self.th.tweet_scoring_sentiment(text)
+		assert(check == 'neither')
 
 if __name__ == "__main__":
 	unittest.main()
