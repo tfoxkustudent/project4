@@ -34,5 +34,10 @@ class ParseTestCase(baseTestCase):
 		check = self.th.tweet_scoring_sentiment(text)
 		assert(check == 'neither')
 
+	def testNeither(self):
+		text = "the person and or"
+		check = self.th.tweet_scoring_sentiment(text)
+		assert(check == 'neither')
+
 if __name__ == "__main__":
 	unittest.main()
