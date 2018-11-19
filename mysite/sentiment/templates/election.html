@@ -1,0 +1,24 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Howdy!</title>
+        <!--Bootstrap reference link-->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"/>
+    </head>
+    <body>
+        <h2>Upcoming Election Predictor</h2>
+        <br>
+        <form action="{% url 'basic' %}" method="post">
+            {% csrf_token %} <!--csrf token is needed to run webpage without error -->
+            <label for="name1">First Election Candidate: </label>
+            <input type="text" name="name1" id="name1" placeholder="Jane Doe" required/>
+            <br>
+            <br>
+            <label for="name2">Second Election Candidate: </label>
+            <input type="text"  name="name2" id="name2" placeholder="John Doe" required/>
+            <br>
+            <br>
+            <input type="submit" class="btn btn-primary" value="Run Election Predictor"/>
+        </form>
+    </body>
+</html>

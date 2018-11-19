@@ -1,4 +1,4 @@
-from django.conf.urls import url
+from django.urls import path
 from sentiment import views
 
 
@@ -7,9 +7,9 @@ URL's that get checked when you reference another location in your html file
 """
 
 urlpatterns = [
-        url(r'^$', views.HomePageView.as_view()),
-        url(r'^about/$', views.AboutPageView.as_view()), 
-        url(r'^basic/$',views.BasicPageView.as_view(), name="basic"),
-         
+        path('', views.HomePageView, name='home'),
+        path('about', views.AboutPageView, name='about'),
+        path('basic', views.BasicPageView, name='basic'),
+        path('election', views.ElectionFrame, name="election"),
+        path('stocks', views.StocksFrame, name="stocks")
         ]
-
