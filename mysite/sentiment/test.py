@@ -1,5 +1,6 @@
 import unittest
 from oauth import TwitterHandle
+import tweepy
 
 class baseTestCase(unittest.TestCase):
 	def setUp(self):
@@ -46,16 +47,14 @@ class TweepyTestCase(baseTestCase):
 		assert((a-b) == 0)
 	def testSearchCheck(self):
 		a = self.th.api_call_check()
-		tweets = self.th.sort_tweets(query = 'Elon Musk', count = 200)
+		tweets = self.th.sort_tweets(query = 'Elon Musk', count = 50)
 		b = self.th.api_call_check()
 		assert((a-b) > 0)
-	# def testRetweet(self):
-	# 	a = self.th.api_call_check()
-	# 	tweets = self.th.sort_tweets(query = 'Elon Musk', count = 200)
-	# 	b = self.th.api_call_check()
-	# 	for t in tweets:
-	# 		assert(not t.retweeted)
-
+	def testRetweet(self):
+		grab_tweets = tweepy.Cursor(self.th.api.search,q = 'Elon Musk', count = 50).items(50)
+		for tweet in grab_tweets:
+			if not tweet.retweeted:
+				assert(tweet.retweet_count == 0)
 
 if __name__ == "__main__":
 	unittest.main()
