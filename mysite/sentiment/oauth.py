@@ -79,7 +79,7 @@ class TwitterHandle(object):
         rate_limit = self.api.rate_limit_status()
 
         return rate_limit["resources"]["search"]["/search/tweets"]["remaining"]
-# 
+#
 # def main():
 #
 #     con = TwitterHandle()

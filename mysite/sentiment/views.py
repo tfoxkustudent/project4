@@ -34,31 +34,33 @@ beta to try and figure out how to pass values through
 """
 
 def BasicPageView(request):
+
+    context1 = search(request.POST["name1"], 1)
+    context2 = search(request.POST["name2"], 2)
+
+    return render(request, "basic.html", context=dict(context1, **context2))
+
+def search(term, count):
+
     twitter_data = TwitterHandle()
 
-    tweets = twitter_data.sort_tweets(query = request.POST["name1"], count = 200)
+    tweets = twitter_data.sort_tweets(query=term, count=200)
 
-    positive_tweets = [tweet for tweet in tweets if tweet['score'] == 'positive']
-    negative_tweets = [tweet for tweet in tweets if tweet['score'] == 'negative']
-    dont_care_tweets = [tweet for tweet in tweets if tweet['score'] == 'neither']
+    positive_tweets = [tweet["tweet"] for tweet in tweets if tweet["score"] == "positive"]
+    negative_tweets = [tweet["tweet"] for tweet in tweets if tweet["score"] == "negative"]
+    dont_care_tweets = [tweet["tweet"] for tweet in tweets if tweet["score"] == "neither"]
 
     context = {
-        "positive_tweets" : len(positive_tweets),
-        "negative_tweets" : len(negative_tweets),
-        "dont_care_tweets" : len(dont_care_tweets),
-        "total_tweets" : len(tweets),
-        "positive_percentage" : 100*len(positive_tweets)/len(tweets),
-        "negative_percentage" : 100*len(negative_tweets)/len(tweets),
-        "dont_care_percentage" : 100*len(dont_care_tweets)/len(tweets),
-        "searches_remaining" : twitter_data.api_call_check()
+        "positive_count_" + str(count) : len(positive_tweets),
+        "negative_count_" + str(count) : len(negative_tweets),
+        "dont_care_count_" + str(count) : len(dont_care_tweets),
+        "total_count_" + str(count) : len(tweets),
+        "positive_percentage_" + str(count) : 100*len(positive_tweets)/len(tweets),
+        "negative_percentage_" + str(count) : 100*len(negative_tweets)/len(tweets),
+        "dont_care_percentage_" + str(count) : 100*len(dont_care_tweets)/len(tweets),
+        "searches_remaining_" + str(count) : twitter_data.api_call_check(),
+        "positive_tweets_" + str(count) : positive_tweets,
+        "negative_tweets_" + str(count) : negative_tweets
     }
 
-    # print("\n\nPositive tweets:")
-    # for tweet in positive_tweets[:10]:
-    #     print(tweet['tweet'])
-    #
-    # print("\n\nNegative tweets:")
-    # for tweet in negative_tweets[:10]:
-    #     print(tweet['tweet'])
-
-    return render(request, "basic.html", context=context)
+    return context

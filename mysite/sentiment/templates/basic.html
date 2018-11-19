@@ -8,21 +8,50 @@
     </head>
     <body>
         <p>
-            Number of Positive Tweets: {{ positive_tweets }}
+            Number of Positive Tweets: {{ positive_count_1 }}
             <br>
-            Number of Negative Tweets: {{ negative_tweets }}
+            Number of Negative Tweets: {{ negative_count_1 }}
             <br>
-            Number of Don't Care Tweets: {{ dont_care_tweets }}
+            Number of Don't Care Tweets: {{ dont_care_count_1 }}
             <br>
-            Total Number of Tweets: {{ total_tweets }}
+            Total Number of Tweets: {{ total_count_1 }}
             <br>
-            Percentage of Positive Tweets: {{ positive_percentage }}
+            Percentage of Positive Tweets: {{ positive_percentage_1 }}
             <br>
-            Percentage of Negative Tweets: {{ negative_percentage }}
+            Percentage of Negative Tweets: {{ negative_percentage_1 }}
             <br>
-            Percentage of Don't Care Tweets: {{ dont_care_percentage }}
+            Percentage of Don't Care Tweets: {{ dont_care_percentage_1 }}
             <br><br>
-            Searches Remaining: {{ searches_remaining }}
+            Number of Positive Tweets: {{ positive_count_2 }}
+            <br>
+            Number of Negative Tweets: {{ negative_count_2 }}
+            <br>
+            Number of Don't Care Tweets: {{ dont_care_count_2 }}
+            <br>
+            Total Number of Tweets: {{ total_count_2 }}
+            <br>
+            Percentage of Positive Tweets: {{ positive_percentage_2 }}
+            <br>
+            Percentage of Negative Tweets: {{ negative_percentage_2 }}
+            <br>
+            Percentage of Don't Care Tweets: {{ dont_care_percentage_2 }}
+            <br><br>
+            Searches Remaining: {{ searches_remaining_2 }}
+            <br><br>
+            {% for tweet in positive_tweets_1 %}
+                {{ tweet }}
+                <br><br>
+            {% endfor %}
+            <stript type="application/json">
+                {
+                 "created_at":"Thu Apr 06 15:24:15 +0000 2017",
+                 "id": 850006245121695744,
+                 "id_str": "850006245121695744",
+                 "text": "1/ Today we’re sharing our vision for the future of the Twitter API platform!nhttps://t.co/XweGngmxlP",
+                 "user": {},
+                 "entities": {}
+                }
+            </script>
         </p>
     </body>
 </html>
