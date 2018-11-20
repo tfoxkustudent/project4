@@ -38,20 +38,10 @@
             <br><br>
             Searches Remaining: {{ searches_remaining_2 }}
             <br><br>
-            {% for tweet in positive_tweets_1 %}
-                {{ tweet }}
+            {% for html in positive_html_1 %}
+                {{ html|safe }}
                 <br><br>
             {% endfor %}
-            <stript type="application/json">
-                {
-                     "created_at":"Thu Apr 06 15:24:15 +0000 2017",
-                     "id": 850006245121695744,
-                     "id_str": "850006245121695744",
-                     "text": "1/ Today we’re sharing our vision for the future of the Twitter API platform!nhttps://t.co/XweGngmxlP",
-                     "user": {},
-                     "entities": {}
-                }
-            </script>
         </p>
     </body>
 </html>

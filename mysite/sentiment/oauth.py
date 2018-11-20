@@ -62,8 +62,9 @@ class TwitterHandle(object):
 
                     scoring_tweets = {}
 
-                    scoring_tweets['tweet']= tweet.text
-                    scoring_tweets['score']= self.tweet_scoring_sentiment(tweet.text)
+                    scoring_tweets['tweet'] = tweet.text
+                    scoring_tweets['score'] = self.tweet_scoring_sentiment(tweet.text)
+                    scoring_tweets['id'] = tweet.id
 
                     if tweet.retweet_count == 0:
                         if scoring_tweets not in tweets:

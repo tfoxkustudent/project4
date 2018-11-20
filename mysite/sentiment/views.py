@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView
 from sentiment.oauth import TwitterHandle
+import urllib3
+import json
 
 # Create your views here.
 
@@ -46,9 +48,13 @@ def search(term, count):
 
     tweets = twitter_data.sort_tweets(query=term, count=200)
 
-    positive_tweets = [tweet["tweet"] for tweet in tweets if tweet["score"] == "positive"]
-    negative_tweets = [tweet["tweet"] for tweet in tweets if tweet["score"] == "negative"]
-    dont_care_tweets = [tweet["tweet"] for tweet in tweets if tweet["score"] == "neither"]
+    positive_tweets = [tweet["id"] for tweet in tweets if tweet["score"] == "positive"]
+    negative_tweets = [tweet["id"] for tweet in tweets if tweet["score"] == "negative"]
+    dont_care_tweets = [tweet["id"] for tweet in tweets if tweet["score"] == "neither"]
+
+    http = urllib3.PoolManager()
+    positive_html = [json.loads(http.request("GET", "https://api.twitter.com/1.1/statuses/oembed.json?id=" + str(id)).data.decode("utf-8"))["html"] for id in positive_tweets]
+    negative_html = [json.loads(http.request("GET", "https://api.twitter.com/1.1/statuses/oembed.json?id=" + str(id)).data.decode("utf-8"))["html"] for id in negative_tweets]
 
     context = {
         "positive_count_" + str(count) : len(positive_tweets),
@@ -59,8 +65,8 @@ def search(term, count):
         "negative_percentage_" + str(count) : 100*len(negative_tweets)/len(tweets),
         "dont_care_percentage_" + str(count) : 100*len(dont_care_tweets)/len(tweets),
         "searches_remaining_" + str(count) : twitter_data.api_call_check(),
-        "positive_tweets_" + str(count) : positive_tweets,
-        "negative_tweets_" + str(count) : negative_tweets
+        "positive_html_" + str(count) : positive_html,
+        "negative_html_" + str(count) : negative_html
     }
 
     return context
