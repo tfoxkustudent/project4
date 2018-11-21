@@ -12,8 +12,8 @@ References the index.html when website starts up
 
 def HomePageView(request):
     context = {
-        "election" : "document.getElementById('frame').src = '/election'",
-        "stocks" : "document.getElementById('frame').src = '/stocks'",
+        "one_item" : "document.getElementById('frame').src = '/one_item'",
+        "two_item" : "document.getElementById('frame').src = '/two_item'",
         "resize_frame" : "this.style.height = this.contentWindow.document.body.scrollHeight + 'px'"
     }
     return render(request, "index.html", context=context)
@@ -25,22 +25,22 @@ References the about webpage for the about link in html
 def AboutPageView(request):
     return render(request, "about.html")
 
-def ElectionFrame(request):
-    return render(request, "election.html")
+def TwoItemFrame(request):
+    return render(request, "two_item.html")
 
-def StocksFrame(request):
-    return render(request, "stocks.html")
+def OneItemFrame(request):
+    return render(request, "one_item.html")
 
 """
 beta to try and figure out how to pass values through
 """
 
-def BasicPageView(request):
+def TwoItemResults(request):
 
-    context1 = search(request.POST["name1"], 1)
-    context2 = search(request.POST["name2"], 2)
+    context1 = search(request.POST["item1"], 1)
+    context2 = search(request.POST["item2"], 2)
 
-    return render(request, "basic.html", context=dict(context1, **context2))
+    return render(request, "two_item_results.html", context=dict(context1, **context2))
 
 def search(term, count):
 
