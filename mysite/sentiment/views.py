@@ -40,7 +40,14 @@ def TwoItemResults(request):
     context1 = search(request.POST["item1"], 1)
     context2 = search(request.POST["item2"], 2)
 
-    return render(request, "two_item_results.html", context=dict(context1, **context2))
+    context = dict(context1, **context2)
+
+    if float(context["positive_percentage_1"]) > float(context["positive_percentage_2"]):
+        context["best_item"] = context["item_1"]
+    else:
+        context["best_item"] = context["item_2"]
+
+    return render(request, "two_item_results.html", context=context)
 
 def search(term, count):
 
@@ -50,23 +57,24 @@ def search(term, count):
 
     positive_tweets = [tweet["id"] for tweet in tweets if tweet["score"] == "positive"]
     negative_tweets = [tweet["id"] for tweet in tweets if tweet["score"] == "negative"]
-    dont_care_tweets = [tweet["id"] for tweet in tweets if tweet["score"] == "neither"]
+    neutral_tweets = [tweet["id"] for tweet in tweets if tweet["score"] == "neither"]
 
     http = urllib3.PoolManager()
     positive_html = [json.loads(http.request("GET", "https://api.twitter.com/1.1/statuses/oembed.json?id=" + str(id)).data.decode("utf-8"))["html"] for id in positive_tweets]
     negative_html = [json.loads(http.request("GET", "https://api.twitter.com/1.1/statuses/oembed.json?id=" + str(id)).data.decode("utf-8"))["html"] for id in negative_tweets]
 
     context = {
+        "item_" + str(count) : term,
         "positive_count_" + str(count) : len(positive_tweets),
         "negative_count_" + str(count) : len(negative_tweets),
-        "dont_care_count_" + str(count) : len(dont_care_tweets),
+        "neutral_count_" + str(count) : len(neutral_tweets),
         "total_count_" + str(count) : len(tweets),
-        "positive_percentage_" + str(count) : 100*len(positive_tweets)/len(tweets),
-        "negative_percentage_" + str(count) : 100*len(negative_tweets)/len(tweets),
-        "dont_care_percentage_" + str(count) : 100*len(dont_care_tweets)/len(tweets),
+        "positive_percentage_" + str(count) : "{0:.2f}".format(100*len(positive_tweets)/len(tweets)),
+        "negative_percentage_" + str(count) : "{0:.2f}".format(100*len(negative_tweets)/len(tweets)),
+        "neutral_percentage_" + str(count) : "{0:.2f}".format(100*len(neutral_tweets)/len(tweets)),
         "searches_remaining_" + str(count) : twitter_data.api_call_check(),
-        "positive_html_" + str(count) : positive_html,
-        "negative_html_" + str(count) : negative_html
+        "positive_html_" + str(count) : positive_html[0:3],
+        "negative_html_" + str(count) : negative_html[0:3]
     }
 
     return context
