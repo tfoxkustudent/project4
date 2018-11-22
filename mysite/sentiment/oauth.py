@@ -55,7 +55,7 @@ class TwitterHandle(object):
 
         tweets = []
         try:
-            grab_tweets = tweepy.Cursor(self.api.search,q = query, count = count).items(140)
+            grab_tweets = tweepy.Cursor(self.api.search,q = query, count = count).items(300)
 
             for tweet in grab_tweets:
                 if not tweet.retweeted:
