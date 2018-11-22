@@ -5,28 +5,35 @@
         <title>Howdy!</title>
         <!--Bootstrap reference link-->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"/>
+        <style>
+            .jumbotron {
+                padding: 4rem 1rem !important;
+                border-radius: 0rem !important;
+            }
+        </style>
     </head>
 
     <body>
-        <div class="jumbotron bg-primary" style="color: white;">
+        <div class="jumbotron bg-primary col-lg-12" style="color: white;">
             <h1>Howdy! Welcome to our Amazing Sentimental Analyzer!</h1>
         </div>
         <div class="container-fluid">
-            <form class="form-inline">
+            <form>
                 <div class="form-group row">
-                    <label for="application-select" class="form-group col col-form-label col-xs-2"><strong>Choose the Application: </strong></label>
-                </div>
-                <div class="form-col col col-xs-3">
-                	<select class="form-control" id="application-select">
-                        <option>---</option>
-                        <option onclick="{{ election }}">Upcoming Election Predictor</option>
-                	    <option onclick="{{ stocks }}">Stock Buy/Sell Suggester</option>
-                	</select>
+                    <label for="application-select" class="col-lg-2 col-form-label"><strong>Choose the Application:</strong></label>
+                    <div class="col-lg-3">
+                    	<select class="form-control" id="application-select">
+                            <option>---</option>
+                            <option onclick="{{ one_item }}">One-Item Search</option>
+                    	    <option onclick="{{ two_item }}">Two-Item Comparison</option>
+                    	</select>
+                    </div>
                 </div>
             </form>
-            <br>
-            <iframe id="frame" frameborder="0" srolling="no" width="100%" height="0px" onload="{{ resize_frame }}"></iframe>
-        	<a class="btn btn-default" href="{% url 'about' %}" role="button">About the Project</a>
         </div>
+        <div class="embed-responsive embed-responsive-16by9">
+            <iframe class="embed-responsive-item" id="frame"></iframe>
+        </div>
+        <a class="btn btn-default" href="{% url 'about' %}" role="button">About the Project</a>
     </body>
 </html>

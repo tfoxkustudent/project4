@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Howdy!</title>
+        <!--Bootstrap reference link-->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"/>
+    </head>
+    <body>
+        <div class="container-fluid">
+            <h2>We predict {{ best_item }} is better!</h2>
+            <br>
+            <table class="table col-lg-6">
+                <tr>
+                    <th></th>
+                    <th>{{ item_1 }}</th>
+                    <th>{{ item_2 }}</th>
+                </tr>
+                <tr>
+                    <th>Number of Positive Tweets:</th>
+                    <td>{{ positive_count_1 }} ({{ positive_percentage_1 }}%)</td>
+                    <td>{{ positive_count_2 }} ({{ positive_percentage_2 }}%)</td>
+                </tr>
+                <tr>
+                    <th>Number of Negative Tweets:</th>
+                    <td>{{ negative_count_1 }} ({{ negative_percentage_1 }}%)</td>
+                    <td>{{ negative_count_2 }} ({{ negative_percentage_2 }}%)</td>
+                </tr>
+                <tr>
+                    <th>Number of Neutral Tweets:</th>
+                    <td>{{ neutral_count_1 }} ({{ neutral_percentage_1 }}%)</td>
+                    <td>{{ neutral_count_2 }} ({{ neutral_percentage_2 }}%)</td>
+                </tr>
+                <tr>
+                    <th>Total Number of Tweets:</th>
+                    <td>{{ total_count_1 }}</td>
+                    <td>{{ total_count_2 }}</td>
+                <tr>
+            </table>
+            <table class="table">
+                <tr>
+                    <td>
+                        <h2>{{ item_1 }}'s Most Positive Tweets</h2>
+                        <br>
+                        {% for html in positive_html_1 %}
+                            {{ html|safe }}
+                            <br><br>
+                        {% endfor %}
+                    </td>
+                    <td>
+                        <h2>{{ item_1 }}'s Most Negative Tweets</h2>
+                        <br>
+                        {% for html in negative_html_1 %}
+                            {{ html|safe }}
+                            <br><br>
+                        {% endfor %}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <h2>{{ item_2 }}'s Most Positive Tweets</h2>
+                        <br>
+                        {% for html in positive_html_2 %}
+                            {{ html|safe }}
+                            <br><br>
+                        {% endfor %}
+                    </td>
+                    <td>
+                        <h2>{{ item_2 }}'s Most Negative Tweets</h2>
+                        <br>
+                        {% for html in negative_html_2 %}
+                            {{ html|safe }}
+                            <br><br>
+                        {% endfor %}
+                    </td>
+                </tr>
+            </table>
+            <br><br>
+            <strong>Searches Remaining:</strong> {{ searches_remaining_2 }}
+        </div>
+    </body>
+</html>

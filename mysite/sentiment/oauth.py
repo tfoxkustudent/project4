@@ -55,15 +55,16 @@ class TwitterHandle(object):
 
         tweets = []
         try:
-            grab_tweets = tweepy.Cursor(self.api.search,q = query, count = count).items(140)
+            grab_tweets = tweepy.Cursor(self.api.search,q = query, count = count).items(300)
 
             for tweet in grab_tweets:
                 if not tweet.retweeted:
 
                     scoring_tweets = {}
 
-                    scoring_tweets['tweet']= tweet.text
-                    scoring_tweets['score']= self.tweet_scoring_sentiment(tweet.text)
+                    scoring_tweets['tweet'] = tweet.text
+                    scoring_tweets['score'] = self.tweet_scoring_sentiment(tweet.text)
+                    scoring_tweets['id'] = tweet.id
 
                     if tweet.retweet_count == 0:
                         if scoring_tweets not in tweets:
