@@ -13,44 +13,66 @@ class ParseTestCase(baseTestCase):
 	# def tearDown(self):
 
 	def testSpaces(self): #Test - not remioving interior spaces TODO confirm how textblob works
+		'''
+		checks if parsing maintains internal spaces
+		'''
 		text = "a b c"
 		check = self.th.tweet_parse(text)
-		# print(check)
 		assert (check == "a b c")
-		
-	# def testRetweets(self):
+	
 
 	def testPositive(self):
+		'''
+		tests known positive string
+		'''
 		text = "good"
 		check = self.th.tweet_scoring_sentiment(text)
 		assert(check == 'positive')
 
 	def testNegative(self):
+		'''
+		tests known negative string
+		'''
 		text = "bad"
 		check = self.th.tweet_scoring_sentiment(text)
 		assert(check == 'negative')
 	
 	def testEmpty(self):
+		'''
+		tests empty string
+		'''
 		text = ""
 		check = self.th.tweet_scoring_sentiment(text)
 		assert(check == 'neither')
 
 	def testNeither(self):
+		'''
+		test several neutral words
+		'''
 		text = "the person and or"
 		check = self.th.tweet_scoring_sentiment(text)
 		assert(check == 'neither')
 
 class TweepyTestCase(baseTestCase):
 	def testCallCheck(self):
+		'''
+		tests that checking number of search calls doesn't change it
+		'''
 		a = self.th.api_call_check()
 		b = self.th.api_call_check()
 		assert((a-b) == 0)
 	def testSearchCheck(self):
+		'''
+		tests that call_check updates after calls
+		'''
 		a = self.th.api_call_check()
 		tweets = self.th.sort_tweets(query = 'Elon Musk', count = 50)
 		b = self.th.api_call_check()
 		assert((a-b) > 0)
-	def testRetweet(self):
+	def testRetweet(self): #FIXME - Remove? not accurate
+		'''
+		test retweet filter
+		'''
 		grab_tweets = tweepy.Cursor(self.th.api.search,q = 'Elon Musk', count = 50).items(50)
 		for tweet in grab_tweets:
 			if not tweet.retweeted:
