@@ -69,14 +69,6 @@ class TweepyTestCase(baseTestCase):
 		tweets = self.th.sort_tweets(query = 'Elon Musk', count = 50)
 		b = self.th.api_call_check()
 		assert((a-b) > 0)
-	# def testRetweet(self): #FIXME - Remove? not accurate
-	# 	'''
-	# 	test retweet filter
-	# 	'''
-	# 	grab_tweets = tweepy.Cursor(self.th.api.search,q = 'Elon Musk', count = 50).items(50)
-	# 	for tweet in grab_tweets:
-	# 		if not tweet.retweeted:
-	# 			assert(tweet.retweet_count == 0)
 
 if __name__ == "__main__":
 	unittest.main()
