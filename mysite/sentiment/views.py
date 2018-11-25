@@ -14,7 +14,8 @@ def HomePageView(request):
     context = {
         "one_item" : "document.getElementById('frame').src = '/one_item'",
         "two_item" : "document.getElementById('frame').src = '/two_item'",
-        "resize_frame" : "this.style.height = this.contentWindow.document.body.scrollHeight + 'px'"
+        "three_item" : "document.getElementById('frame').src = '/three_item'",
+        "four_item" : "document.getElementById('frame').src = '/four_item'"
     }
     return render(request, "index.html", context=context)
 
@@ -25,29 +26,36 @@ References the about webpage for the about link in html
 def AboutPageView(request):
     return render(request, "about.html")
 
+def OneItemFrame(request):
+    return render(request, "one_item.html")
+
 def TwoItemFrame(request):
     return render(request, "two_item.html")
 
-def OneItemFrame(request):
-    return render(request, "one_item.html")
+def ThreeItemFrame(request):
+    return render(request, "three_item.html")
+
+def FourItemFrame(request):
+    return render(request, "four_item.html")
 
 """
 beta to try and figure out how to pass values through
 """
+def Results(request):
 
-def TwoItemResults(request):
+    numberOfItems = request.POST["value"]
 
-    context1 = search(request.POST["item1"], 1)
-    context2 = search(request.POST["item2"], 2)
+    context = {}
+    positive_percentages = []
+    for i in range(int(numberOfItems)):
+        context = dict(context, **search(request.POST["item" + str(i + 1)], str(i + 1)))
+        positive_percentages.append(float(context["positive_percentage_" + str(i + 1)]))
 
-    context = dict(context1, **context2)
+    context["best_item"] = context["item_" + str(positive_percentages.index(max(positive_percentages)) + 1)]
 
-    if float(context["positive_percentage_1"]) > float(context["positive_percentage_2"]):
-        context["best_item"] = context["item_1"]
-    else:
-        context["best_item"] = context["item_2"]
+    page = { "1" : "one", "2" : "two", "3" : "three", "4" : "four" }
 
-    return render(request, "two_item_results.html", context=context)
+    return render(request, page[numberOfItems] + "_item_results.html", context=context)
 
 def search(term, count):
 
@@ -64,17 +72,17 @@ def search(term, count):
     negative_html = [json.loads(http.request("GET", "https://api.twitter.com/1.1/statuses/oembed.json?id=" + str(id)).data.decode("utf-8"))["html"] for id in negative_tweets]
 
     context = {
-        "item_" + str(count) : term,
-        "positive_count_" + str(count) : len(positive_tweets),
-        "negative_count_" + str(count) : len(negative_tweets),
-        "neutral_count_" + str(count) : len(neutral_tweets),
-        "total_count_" + str(count) : len(tweets),
-        "positive_percentage_" + str(count) : "{0:.2f}".format(100*len(positive_tweets)/len(tweets)),
-        "negative_percentage_" + str(count) : "{0:.2f}".format(100*len(negative_tweets)/len(tweets)),
-        "neutral_percentage_" + str(count) : "{0:.2f}".format(100*len(neutral_tweets)/len(tweets)),
-        "searches_remaining_" + str(count) : twitter_data.api_call_check(),
-        "positive_html_" + str(count) : positive_html[0:3],
-        "negative_html_" + str(count) : negative_html[0:3]
+        "item_" + count : term,
+        "positive_count_" + count : len(positive_tweets),
+        "negative_count_" + count : len(negative_tweets),
+        "neutral_count_" + count : len(neutral_tweets),
+        "total_count_" + count : len(tweets),
+        "positive_percentage_" + count : "{0:.2f}".format(100*len(positive_tweets)/len(tweets)),
+        "negative_percentage_" + count : "{0:.2f}".format(100*len(negative_tweets)/len(tweets)),
+        "neutral_percentage_" + count : "{0:.2f}".format(100*len(neutral_tweets)/len(tweets)),
+        "searches_remaining_" + count : twitter_data.api_call_check(),
+        "positive_html_" + count : positive_html[0:3],
+        "negative_html_" + count : negative_html[0:3]
     }
 
     return context

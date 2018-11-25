@@ -8,33 +8,28 @@
     </head>
     <body>
         <div class="container-fluid">
-            <h2>We predict {{ best_item }} is better!</h2>
+            <h2>Here are the results for {{ item_1 }}</h2>
             <br>
-            <table class="table col-lg-6">
+            <table class="table col-lg-4">
                 <tr>
                     <th></th>
                     <th>{{ item_1 }}</th>
-                    <th>{{ item_2 }}</th>
                 </tr>
                 <tr>
                     <th>Number of Positive Tweets:</th>
                     <td>{{ positive_count_1 }} ({{ positive_percentage_1 }}%)</td>
-                    <td>{{ positive_count_2 }} ({{ positive_percentage_2 }}%)</td>
                 </tr>
                 <tr>
                     <th>Number of Negative Tweets:</th>
                     <td>{{ negative_count_1 }} ({{ negative_percentage_1 }}%)</td>
-                    <td>{{ negative_count_2 }} ({{ negative_percentage_2 }}%)</td>
                 </tr>
                 <tr>
                     <th>Number of Neutral Tweets:</th>
                     <td>{{ neutral_count_1 }} ({{ neutral_percentage_1 }}%)</td>
-                    <td>{{ neutral_count_2 }} ({{ neutral_percentage_2 }}%)</td>
                 </tr>
                 <tr>
                     <th>Total Number of Tweets:</th>
                     <td>{{ total_count_1 }}</td>
-                    <td>{{ total_count_2 }}</td>
                 <tr>
             </table>
             <table class="table">
@@ -47,14 +42,6 @@
                             <br><br>
                         {% endfor %}
                     </td>
-                    <td>
-                        <h2>{{ item_2 }}'s Most Positive Tweets</h2>
-                        <br>
-                        {% for html in positive_html_2 %}
-                            {{ html|safe }}
-                            <br><br>
-                        {% endfor %}
-                    </td>                    
                 </tr>
                 <tr>
                     <td>
@@ -65,18 +52,10 @@
                             <br><br>
                         {% endfor %}
                     </td>
-                    <td>
-                        <h2>{{ item_2 }}'s Most Negative Tweets</h2>
-                        <br>
-                        {% for html in negative_html_2 %}
-                            {{ html|safe }}
-                            <br><br>
-                        {% endfor %}
-                    </td>
                 </tr>
             </table>
             <br><br>
-            <strong>Searches Remaining:</strong> {{ searches_remaining_2 }}
+            <strong>Searches Remaining:</strong> {{ searches_remaining_1 }}
         </div>
     </body>
 </html>
