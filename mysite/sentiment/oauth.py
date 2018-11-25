@@ -1,5 +1,5 @@
 '''
-Oauth process of connecting to twitter api
+These are our backend functions.  It begins with connecting to twitter API, grabbing tweets, and performing sentimental analysis.
 '''
 import json
 import tweepy
@@ -37,7 +37,9 @@ class TwitterHandle(object):
 
 
     def tweet_scoring_sentiment(self, tweet):
-
+       '''
+       Scoring tweets and storing them depending on their sentiment
+       '''
         sentiment_score = tb(self.tweet_parse(tweet).strip())
 
         if sentiment_score.sentiment.polarity > 0:
@@ -77,6 +79,9 @@ class TwitterHandle(object):
             print("Error : " + str(e))
 
     def api_call_check(self):
+        '''
+        returns our searches remaining per 15 minutes
+        '''
         rate_limit = self.api.rate_limit_status()
 
         return rate_limit["resources"]["search"]["/search/tweets"]["remaining"]
