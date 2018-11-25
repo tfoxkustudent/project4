@@ -1,0 +1,197 @@
+
+
+<!doctype html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Auto Generated Code Documentation &#8212; Amazing Sentimental Analyzer 1.0 documentation</title>
+    <link rel="stylesheet" href="_static/bizstyle.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/bizstyle.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Welcome to Amazing Sentimental Analyzer’s documentation!" href="index.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="_static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to Amazing Sentimental Analyzer’s documentation!"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Amazing Sentimental Analyzer 1.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">Welcome to Amazing Sentimental Analyzer’s documentation!</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/docs.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-oauth">
+<span id="auto-generated-code-documentation"></span><h1>Auto Generated Code Documentation<a class="headerlink" href="#module-oauth" title="Permalink to this headline">¶</a></h1>
+<p>These are our backend functions.  It begins with connecting to twitter API, grabbing tweets, and performing sentimental analysis.</p>
+<dl class="class">
+<dt id="oauth.TwitterHandle">
+<em class="property">class </em><code class="descclassname">oauth.</code><code class="descname">TwitterHandle</code><span class="sig-paren">(</span><em>object</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/oauth.html#TwitterHandle"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#oauth.TwitterHandle" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="oauth.TwitterHandle.api_call_check">
+<code class="descname">api_call_check</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/oauth.html#TwitterHandle.api_call_check"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#oauth.TwitterHandle.api_call_check" title="Permalink to this definition">¶</a></dt>
+<dd><p>returns our searches remaining per 15 minutes</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="oauth.TwitterHandle.sort_tweets">
+<code class="descname">sort_tweets</code><span class="sig-paren">(</span><em>query</em>, <em>count</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/oauth.html#TwitterHandle.sort_tweets"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#oauth.TwitterHandle.sort_tweets" title="Permalink to this definition">¶</a></dt>
+<dd><p>Grab the tweets and parse</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="oauth.TwitterHandle.tweet_parse">
+<code class="descname">tweet_parse</code><span class="sig-paren">(</span><em>tweet</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/oauth.html#TwitterHandle.tweet_parse"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#oauth.TwitterHandle.tweet_parse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parse tweets so we can send through natural language library</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="oauth.TwitterHandle.tweet_scoring_sentiment">
+<code class="descname">tweet_scoring_sentiment</code><span class="sig-paren">(</span><em>tweet</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/oauth.html#TwitterHandle.tweet_scoring_sentiment"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#oauth.TwitterHandle.tweet_scoring_sentiment" title="Permalink to this definition">¶</a></dt>
+<dd><p>Scoring tweets and storing them depending on their sentiment</p>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-test"></span><dl class="class">
+<dt id="test.ParseTestCase">
+<em class="property">class </em><code class="descclassname">test.</code><code class="descname">ParseTestCase</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/test.html#ParseTestCase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#test.ParseTestCase" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="test.ParseTestCase.testEmpty">
+<code class="descname">testEmpty</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/test.html#ParseTestCase.testEmpty"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#test.ParseTestCase.testEmpty" title="Permalink to this definition">¶</a></dt>
+<dd><p>tests empty string</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="test.ParseTestCase.testNegative">
+<code class="descname">testNegative</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/test.html#ParseTestCase.testNegative"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#test.ParseTestCase.testNegative" title="Permalink to this definition">¶</a></dt>
+<dd><p>tests known negative string</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="test.ParseTestCase.testNeither">
+<code class="descname">testNeither</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/test.html#ParseTestCase.testNeither"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#test.ParseTestCase.testNeither" title="Permalink to this definition">¶</a></dt>
+<dd><p>test several neutral words</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="test.ParseTestCase.testPositive">
+<code class="descname">testPositive</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/test.html#ParseTestCase.testPositive"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#test.ParseTestCase.testPositive" title="Permalink to this definition">¶</a></dt>
+<dd><p>tests known positive string</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="test.ParseTestCase.testSpaces">
+<code class="descname">testSpaces</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/test.html#ParseTestCase.testSpaces"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#test.ParseTestCase.testSpaces" title="Permalink to this definition">¶</a></dt>
+<dd><p>checks if parsing maintains internal spaces</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="test.TweepyTestCase">
+<em class="property">class </em><code class="descclassname">test.</code><code class="descname">TweepyTestCase</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/test.html#TweepyTestCase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#test.TweepyTestCase" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="test.TweepyTestCase.testCallCheck">
+<code class="descname">testCallCheck</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/test.html#TweepyTestCase.testCallCheck"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#test.TweepyTestCase.testCallCheck" title="Permalink to this definition">¶</a></dt>
+<dd><p>tests that checking number of search calls doesn’t change it</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="test.TweepyTestCase.testSearchCheck">
+<code class="descname">testSearchCheck</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/test.html#TweepyTestCase.testSearchCheck"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#test.TweepyTestCase.testSearchCheck" title="Permalink to this definition">¶</a></dt>
+<dd><p>tests that call_check updates after calls</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="test.baseTestCase">
+<em class="property">class </em><code class="descclassname">test.</code><code class="descname">baseTestCase</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/test.html#baseTestCase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#test.baseTestCase" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="test.baseTestCase.setUp">
+<code class="descname">setUp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/test.html#baseTestCase.setUp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#test.baseTestCase.setUp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Hook method for setting up the test fixture before exercising it.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to Amazing Sentimental Analyzer’s documentation!"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Amazing Sentimental Analyzer 1.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Brogrammers.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.0.
+    </div>
+  </body>
+</html>
