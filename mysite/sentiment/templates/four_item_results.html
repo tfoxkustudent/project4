@@ -23,21 +23,21 @@
                     <td>{{ positive_count_1 }} ({{ positive_percentage_1 }}%)</td>
                     <td>{{ positive_count_2 }} ({{ positive_percentage_2 }}%)</td>
                     <td>{{ positive_count_3 }} ({{ positive_percentage_3 }}%)</td>
-                    <td>{{ positive_count_3 }} ({{ positive_percentage_4 }}%)</td>
+                    <td>{{ positive_count_4 }} ({{ positive_percentage_4 }}%)</td>
                 </tr>
                 <tr>
                     <th>Number of Negative Tweets:</th>
                     <td>{{ negative_count_1 }} ({{ negative_percentage_1 }}%)</td>
                     <td>{{ negative_count_2 }} ({{ negative_percentage_2 }}%)</td>
                     <td>{{ negative_count_3 }} ({{ negative_percentage_3 }}%)</td>
-                    <td>{{ negative_count_3 }} ({{ negative_percentage_4 }}%)</td>
+                    <td>{{ negative_count_4 }} ({{ negative_percentage_4 }}%)</td>
                 </tr>
                 <tr>
                     <th>Number of Neutral Tweets:</th>
                     <td>{{ neutral_count_1 }} ({{ neutral_percentage_1 }}%)</td>
                     <td>{{ neutral_count_2 }} ({{ neutral_percentage_2 }}%)</td>
                     <td>{{ neutral_count_3 }} ({{ neutral_percentage_3 }}%)</td>
-                    <td>{{ neutral_count_3 }} ({{ neutral_percentage_4 }}%)</td>
+                    <td>{{ neutral_count_4 }} ({{ neutral_percentage_4 }}%)</td>
                 </tr>
                 <tr>
                     <th>Total Number of Tweets:</th>
@@ -47,7 +47,8 @@
                     <td>{{ total_count_4 }}</td>
                 <tr>
             </table>
-            <table class="table col-lg-12">
+            <div class="col-lg-12">
+            <table class="table">
                 <tr>
                     <td>
                         <h2>{{ item_1 }}'s Most Positive Tweets</h2>
@@ -117,6 +118,7 @@
                     </td>
                 </tr>
             </table>
+            </div>
             <br><br>
             <strong>Searches Remaining:</strong> {{ searches_remaining_4 }}
         </div>
