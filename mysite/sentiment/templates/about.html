@@ -3,12 +3,35 @@
     <head>
         <meta charset="utf-8">
         <title>Howdy!</title>
+        <!--Bootstrap reference link-->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"/>
+        <style>
+            .jumbotron {
+                padding: 4rem 1rem !important;
+                border-radius: 0rem !important;
+            }
+        </style>
     </head>
+
     <body>
-        <h1>Welcome to the about page</h1>
-    <p>
-    This project is sentimental analysis of twitter data
-    </p>
-    <a href="/">Go back home</a>
+        <div class="jumbotron bg-primary col-lg-12" style="color: white;">
+            <h1>About the Project</h1>
+        </div>
+        <div class="container-fluid">
+            <p>
+                Welcome to the Amazing Sentimental Analyzer Project.
+                <br>
+                This project utilizes sentimental analysis of twitter data.
+                <br>
+                We connect to the twitter API and search based on user inputs.
+                <br>
+                We offer single product, two product, three product, and four product comparison.
+                <br>
+                Our program then goes and fetches the tweets, parses them and then performs sentimental analysis.
+                <br>
+                We display the results and offer our "prediction" what the best product is.
+                </p>
+        </div>
+        <a class="btn btn-default" href="{% url 'home' %}" role="button">Home</a>
     </body>
 </html>
