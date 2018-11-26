@@ -6,11 +6,10 @@ import json
 
 # Create your views here.
 
-"""
-References the index.html when website starts up
-"""
-
 def HomePageView(request):
+    """
+    References the homepage when website starts up and controls links within the iframe
+    """
     context = {
         "one_item" : "document.getElementById('frame').src = '/one_item'",
         "two_item" : "document.getElementById('frame').src = '/two_item'",
@@ -19,29 +18,41 @@ def HomePageView(request):
     }
     return render(request, "index.html", context=context)
 
-"""
-References the about webpage for the about link in html
-"""
 
 def AboutPageView(request):
+    """
+    References the about page
+    """
     return render(request, "about.html")
 
 def OneItemFrame(request):
+    """
+    References the one-item search
+    """
     return render(request, "one_item.html")
 
 def TwoItemFrame(request):
+    """
+    References the two-item search
+    """
     return render(request, "two_item.html")
 
 def ThreeItemFrame(request):
+    """
+    References the three-item search
+    """
     return render(request, "three_item.html")
 
 def FourItemFrame(request):
+    """
+    References the four-item search
+    """
     return render(request, "four_item.html")
 
-"""
-beta to try and figure out how to pass values through
-"""
 def Results(request):
+    """
+    References the results page, adjusting based on the number of items
+    """
 
     numberOfItems = int(request.POST["value"])
 
@@ -62,6 +73,9 @@ def Results(request):
         return render(request, "error.html")
 
 def search(term, count):
+    """
+    Searches twitter for the given term and returns the results
+    """
 
     twitter_data = TwitterHandle()
 
