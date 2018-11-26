@@ -43,23 +43,32 @@ beta to try and figure out how to pass values through
 """
 def Results(request):
 
-    numberOfItems = request.POST["value"]
+    numberOfItems = int(request.POST["value"])
 
-    context = {}
-    positive_percentages = []
-    for i in range(int(numberOfItems)):
-        context = dict(context, **search(request.POST["item" + str(i + 1)], str(i + 1)))
-        positive_percentages.append(float(context["positive_percentage_" + str(i + 1)]))
+    try:
+        context = {}
+        positive_percentages = []
+        for i in range(numberOfItems):
+            context = dict(context, **search(request.POST["item" + str(numberOfItems - i)], numberOfItems - i))
+            positive_percentages.append(float(context["positive_percentage_" + str(numberOfItems - i)]))
 
-    context["best_item"] = context["item_" + str(positive_percentages.index(max(positive_percentages)) + 1)]
+        context["best_item"] = context["item_" + str(positive_percentages.index(max(positive_percentages)) + 1)]
 
-    page = { "1" : "one", "2" : "two", "3" : "three", "4" : "four" }
+        page = { 1 : "one", 2 : "two", 2 : "three", 4 : "four" }
 
-    return render(request, page[numberOfItems] + "_item_results.html", context=context)
+        return render(request, page[numberOfItems] + "_item_results.html", context=context)
+
+    except RuntimeError:
+        return render(request, "error.html")
 
 def search(term, count):
 
     twitter_data = TwitterHandle()
+
+    searches_remaining = twitter_data.api_call_check()
+
+    if searches_remaining < count:
+        raise RuntimeError()
 
     tweets = twitter_data.sort_tweets(query=term, count=200)
 
@@ -71,18 +80,20 @@ def search(term, count):
     positive_html = [json.loads(http.request("GET", "https://api.twitter.com/1.1/statuses/oembed.json?id=" + str(id)).data.decode("utf-8"))["html"] for id in positive_tweets]
     negative_html = [json.loads(http.request("GET", "https://api.twitter.com/1.1/statuses/oembed.json?id=" + str(id)).data.decode("utf-8"))["html"] for id in negative_tweets]
 
+    countstr = str(count)
+
     context = {
-        "item_" + count : term,
-        "positive_count_" + count : len(positive_tweets),
-        "negative_count_" + count : len(negative_tweets),
-        "neutral_count_" + count : len(neutral_tweets),
-        "total_count_" + count : len(tweets),
-        "positive_percentage_" + count : "{0:.2f}".format(100*len(positive_tweets)/len(tweets)),
-        "negative_percentage_" + count : "{0:.2f}".format(100*len(negative_tweets)/len(tweets)),
-        "neutral_percentage_" + count : "{0:.2f}".format(100*len(neutral_tweets)/len(tweets)),
-        "searches_remaining_" + count : twitter_data.api_call_check(),
-        "positive_html_" + count : positive_html[0:3],
-        "negative_html_" + count : negative_html[0:3]
+        "item_" + countstr : term,
+        "positive_count_" + countstr : len(positive_tweets),
+        "negative_count_" + countstr : len(negative_tweets),
+        "neutral_count_" + countstr : len(neutral_tweets),
+        "total_count_" + countstr : len(tweets),
+        "positive_percentage_" + countstr : "{0:.2f}".format(100*len(positive_tweets)/len(tweets)),
+        "negative_percentage_" + countstr : "{0:.2f}".format(100*len(negative_tweets)/len(tweets)),
+        "neutral_percentage_" + countstr : "{0:.2f}".format(100*len(neutral_tweets)/len(tweets)),
+        "searches_remaining_" + countstr : searches_remaining,
+        "positive_html_" + countstr : positive_html[0:3],
+        "negative_html_" + countstr : negative_html[0:3]
     }
 
     return context
