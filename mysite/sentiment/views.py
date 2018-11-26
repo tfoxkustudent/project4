@@ -72,6 +72,23 @@ def search(term, count):
 
     tweets = twitter_data.sort_tweets(query=term, count=200)
 
+    countstr = str(count)
+
+    if len(tweets) == 0:
+        return {
+            "item_" + countstr : term,
+            "positive_count_" + countstr : 0,
+            "negative_count_" + countstr : 0,
+            "neutral_count_" + countstr : 0,
+            "total_count_" + countstr : 0,
+            "positive_percentage_" + countstr : "0.00",
+            "negative_percentage_" + countstr : "0.00",
+            "neutral_percentage_" + countstr : "0.00",
+            "positive_html_" + countstr : [],
+            "negative_html_" + countstr : [],
+            "searches_remaining_" + countstr : searches_remaining,
+        }
+
     positive_tweets = [tweet["id"] for tweet in tweets if tweet["score"] == "positive"]
     negative_tweets = [tweet["id"] for tweet in tweets if tweet["score"] == "negative"]
     neutral_tweets = [tweet["id"] for tweet in tweets if tweet["score"] == "neither"]
@@ -79,8 +96,6 @@ def search(term, count):
     http = urllib3.PoolManager()
     positive_html = [json.loads(http.request("GET", "https://api.twitter.com/1.1/statuses/oembed.json?id=" + str(id)).data.decode("utf-8"))["html"] for id in positive_tweets]
     negative_html = [json.loads(http.request("GET", "https://api.twitter.com/1.1/statuses/oembed.json?id=" + str(id)).data.decode("utf-8"))["html"] for id in negative_tweets]
-
-    countstr = str(count)
 
     context = {
         "item_" + countstr : term,
@@ -91,9 +106,9 @@ def search(term, count):
         "positive_percentage_" + countstr : "{0:.2f}".format(100*len(positive_tweets)/len(tweets)),
         "negative_percentage_" + countstr : "{0:.2f}".format(100*len(negative_tweets)/len(tweets)),
         "neutral_percentage_" + countstr : "{0:.2f}".format(100*len(neutral_tweets)/len(tweets)),
-        "searches_remaining_" + countstr : searches_remaining,
         "positive_html_" + countstr : positive_html[0:3],
-        "negative_html_" + countstr : negative_html[0:3]
+        "negative_html_" + countstr : negative_html[0:3],
+        "searches_remaining_" + countstr : searches_remaining
     }
 
     return context
