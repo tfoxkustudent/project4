@@ -65,7 +65,7 @@ def Results(request):
 
         context["best_item"] = context["item_" + str(positive_percentages.index(max(positive_percentages)) + 1)]
 
-        page = { 1 : "one", 2 : "two", 2 : "three", 4 : "four" }
+        page = { 1 : "one", 2 : "two", 3 : "three", 4 : "four" }
 
         return render(request, page[numberOfItems] + "_item_results.html", context=context)
 
