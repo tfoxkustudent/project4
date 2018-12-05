@@ -1,0 +1,14 @@
+Project 4 Bug List
+
+1.  Polarity scores are not 100% accurate.
+
+2.  Search results sometimes return what we did not intend (out of context of our search)
+
+3.  Does not run on anything other than Firefox browser.
+
+4.  One Item search button is not alligned on the page correctly.
+
+5.  The shown tweet box sizes are dependant on the size of the tweet themselves, so
+    sometimes the spacing of the shown tweets is off and not asthetically pleasing.
+
+  
